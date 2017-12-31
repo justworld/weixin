@@ -1,0 +1,83 @@
+  .banner {
+    width: 100%;
+    height: 460px;
+  }
+
+  .inner {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: 330px;
+    margin-top: 25px;
+    background-color: #fff;
+  }
+  .title{
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .login-panel{
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .login-div{
+    position: relative;
+    padding: 3px 0 3px 40px;
+    border: 1px solid #e7e7eb;
+  }
+  input{
+    border: 0;
+    outline: 0;
+    padding: 11px 0;
+    vertical-align: middle;
+    border-radius: 3px;
+    width: 100%;
+  }
+  .icon{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -11px;
+    width: 16px;
+    height: 18px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .icon-un{
+    background: url(../assets/images/icon.png) 0 0 no-repeat;
+  }
+  .icon-pwd{
+    background: url(../assets/images/icon.png) 0 -22px no-repeat;
+  }
+  .clear{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -11px;
+    width: 16px;
+    height: 18px;
+    vertical-align: middle;
+    display: inline-block;
+    background: url(../assets/images/icon.png) 0 -1830px no-repeat;
+  }
+  .btn-login{
+    height: 33px;
+    line-height: 33px;
+    width: 120px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #44b549;
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    border-color: #44b549;
+  }
+  .btn-login:hover{
+    text-decoration: none;
+    background-color: #2f9833;
+  }
+  .btn-reg{
+    float: right;
+    color: #576b95;
+    text-decoration: none;
+  }

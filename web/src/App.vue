@@ -1,14 +1,19 @@
 <template>
   <div id="app">
     <!-- 头部 -->
-    <div class="header" v-show="load"></div>
+    <div class="header" v-show="load">
+      <v-header></v-header>
+    </div>
     <!-- 主体 -->
-    <div class="content" v-show="load"></div>
+    <div class="content" v-show="load">
+      <router-view></router-view>
+    </div>
     <!-- di bu导航 -->
-    <div class="footer" v-show="load"></div>
+    <div class="footer" v-show="load">
+      <v-footer></v-footer>
+    </div>
     <!-- 欢迎页 -->
     <div class="welcome" v-show="welcome" transition="welcome"></div>
-    <router-view/>
   </div>
 </template>
 
@@ -32,8 +37,44 @@
     }
   }
 </script>
-
+<style>
+  @import "./assets/css/base.css";
+</style>
 <style scoped>
+  .header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    height: 45px;
+    line-height: 45px;
+    font-size: 19px;
+    background: linear-gradient(to bottom, #303036, #3c3b40);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .content {
+    padding-top: 45px;
+    padding-bottom: 50px;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+  }
+
+  .content ._full_inner {
+    z-index: 2;
+  }
+
+  .footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+  }
+
   .welcome {
     width: 100%;
     height: 100%;
@@ -42,9 +83,10 @@
     left: 0;
     top: 0;
     transition: .25s all linear;
-    background: url(./assets/images/launchimage.png) no-repeat center center;
+    background: url(./assets/images/start.png) no-repeat center center;
     background-size: cover;
   }
+
   .welcome-leave {
     opacity: 0;
   }

@@ -1,0 +1,25 @@
+/*common*/
+html,
+body,
+#app {
+  font-family: PingFang SC, Hiragino Sans GB, Arial, Microsoft YaHei, Helvetica;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+ol, ul {
+	list-style: none;
+}
