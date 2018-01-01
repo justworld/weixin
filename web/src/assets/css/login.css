@@ -81,3 +81,9 @@
     color: #576b95;
     text-decoration: none;
   }
+  .err{
+    color: #e15f63;
+    font-size: 13px;
+    margin-top: 5px;
+    vertical-align: middle;
+  }

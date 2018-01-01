@@ -1,9 +1,13 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
 import ChatIndex from '@/pages/chat'
 
 import Login from '@/pages/login.vue'
 import Reg from '@/pages/reg.vue'
 
-export default [
+const routes= [
   {
     path: '/',
     name: 'index',
@@ -20,3 +24,8 @@ export default [
     component: Reg
   }
 ]
+
+export default new VueRouter({
+  routes,
+  mode: 'history', //路由模式
+})

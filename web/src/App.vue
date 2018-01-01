@@ -9,7 +9,7 @@
       <router-view></router-view>
     </div>
     <!-- di bu导航 -->
-    <div class="footer" v-show="load">
+    <div class="footer" v-show="load && isLogin">
       <v-footer></v-footer>
     </div>
     <!-- 欢迎页 -->
@@ -22,6 +22,7 @@
     data() {
       return {
         load: false,//加载
+        isLogin: false,//是否登录
         welcome: true,
       }
     },
