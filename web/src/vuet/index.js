@@ -7,14 +7,20 @@ import API from '../api'
 
 export default new Vuet({
   modules: {
-    reg: {
+    user: {
       data() {
         return {}
       },
       manuals: {
         createUser({state}, name, password) {
-          console.log(state)
-          API.reg(name, password)
+          API.reg(name, password).then(function (res) {
+            console.log(res)
+          })
+        },
+        login({state}, name, password) {
+          API.login(name, password).then(function (res) {
+            console.log(res)
+          })
         }
       }
     },

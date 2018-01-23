@@ -40,10 +40,10 @@
   export default {
     mixins: [
       mapModules({
-        reg: 'reg'
+        user: 'user'
       }),
       mapRules({
-        manual: 'reg'
+        manual: 'user'
       })
     ],
     data() {
@@ -82,7 +82,12 @@
         }
         //注册
         that.error = ''
-        let result = that.$reg.createUser(that.account, that.password)
+        that.$user.createUser(that.account, that.password)
+        if (true) {
+          that.$router.push('/login')
+        } else {
+          that.error = ''
+        }
       }
     }
   }

@@ -5,18 +5,19 @@ axios.defaults.baseURL = 'http://localhost:8000'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 export default {
-  login() {
-    axios.post('/login').then(function (response) {
+  login(name, password) {
+    return axios.post('/login', {
+      name: name,
+      password: password
+    }).then(function (response) {
       console.log(response)
     })
   },
   reg(name, password) {
-    axios.post('/reg', {
+    return axios.post('/reg', {
         name: name,
-        password: name
+        password: password
       }
-    ).then(function (response) {
-      console.log(response)
-    })
+    ).then(response => response.data)
   }
 }
