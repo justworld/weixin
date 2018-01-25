@@ -9,18 +9,20 @@ export default new Vuet({
   modules: {
     user: {
       data() {
-        return {}
+        return {
+          username: ''
+        }
       },
       manuals: {
         createUser({state}, name, password) {
-          API.reg(name, password).then(function (res) {
-            console.log(res)
-          })
+          return API.reg(name, password)
         },
-        login({state}, name, password) {
-          API.login(name, password).then(function (res) {
-            console.log(res)
-          })
+        async login({state}, name, password) {
+          const data = await API.login(name, password)
+          if (data.result) {
+            state = {username: name}
+          }
+          return data
         }
       }
     },

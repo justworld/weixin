@@ -61,7 +61,7 @@
           that[name] = ''
         }
       },
-      submit() {
+      async submit() {
         const that = this
         //校验
         if (!that.account) {
@@ -82,11 +82,11 @@
         }
         //注册
         that.error = ''
-        that.$user.createUser(that.account, that.password)
-        if (true) {
+        const data = await that.$user.createUser(that.account, that.password)
+        if (data.result) {
           that.$router.push('/login')
         } else {
-          that.error = ''
+          that.error = data.msg
         }
       }
     }

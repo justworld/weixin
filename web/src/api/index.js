@@ -9,15 +9,13 @@ export default {
     return axios.post('/login', {
       name: name,
       password: password
-    }).then(function (response) {
-      console.log(response)
-    })
+    }).then(res => res.data)
   },
   reg(name, password) {
     return axios.post('/reg', {
         name: name,
         password: password
       }
-    ).then(response => response.data)
+    ).then(res => res.data)
   }
 }
