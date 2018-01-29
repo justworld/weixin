@@ -1,7 +1,12 @@
 <template>
   <div class="top">
-    <div class="right"></div>
-    <div class="center"></div>
+    <div class="right" style="right: 60px;">
+      <i class="weui_icon_search search"></i>
+    </div>
+    <div class="right">
+      <span class="iconfont icon-tips-jia"></span>
+    </div>
+    <div class="left">微信</div>
   </div>
 </template>
 
@@ -19,5 +24,20 @@
     user-select: none;
     -webkit-user-select: none;
     transition: .22s all ease;
+  }
+  .left{
+    text-align: left;
+  }
+  .right{
+    position: absolute;
+    right: 15px;
+  }
+  .top .iconfont{
+    font-size: 22px;
+  }
+  .top .search{
+    color: #fff;
+    font-size: 18px;
+    font-weight: bolder;
   }
 </style>

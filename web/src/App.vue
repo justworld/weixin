@@ -51,6 +51,7 @@
 <style>
   @import "./assets/css/base.css";
   @import "./assets/css/iconfont.css";
+  @import "./assets/css/weui.min.css";
 </style>
 <style scoped>
   .header {
