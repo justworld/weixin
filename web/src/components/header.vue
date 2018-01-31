@@ -1,14 +1,53 @@
 <template>
   <div class="top">
     <div class="right" style="right: 60px;">
-      <i class="weui_icon_search search"></i>
+      <i class="weui_icon_search"></i>
     </div>
     <div class="right">
-      <span class="iconfont icon-tips-jia"></span>
+      <span class="iconfont icon-tips-jia" @click="showMenu"></span>
+      <ul class="menu" :class="isShowMenu?'menu-open':'menu-close'">
+        <li>
+          <span class="iconfont icon-tips-xiaoxi"></span>
+          <div>发起群聊</div>
+        </li>
+        <li>
+          <span class="iconfont icon-tips-add-friend"></span>
+          <div>添加朋友</div>
+        </li>
+        <li>
+          <span class="iconfont icon-tips-saoyisao"></span>
+          <div>扫一扫</div>
+        </li>
+        <li>
+          <span class="iconfont icon-tips-fukuan"></span>
+          <div>收付款</div>
+        </li>
+      </ul>
     </div>
     <div class="left">微信</div>
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        load: false,//加载
+        isLogin: true,//是否登录
+        welcome: true,
+        isShowMenu: false,
+      }
+    },
+    created() {
+    },
+    methods: {
+      showMenu() {
+        const that = this
+        that.isShowMenu = !that.isShowMenu
+      }
+    }
+  }
+</script>
 
 <style scoped>
   .top {
@@ -25,19 +64,54 @@
     -webkit-user-select: none;
     transition: .22s all ease;
   }
-  .left{
+
+  .left {
     text-align: left;
   }
-  .right{
+
+  .right {
     position: absolute;
     right: 15px;
   }
-  .top .iconfont{
+
+  .top .iconfont {
     font-size: 22px;
   }
-  .top .search{
+
+  .weui_icon_search:before {
     color: #fff;
     font-size: 18px;
     font-weight: bolder;
+  }
+
+  .menu {
+    position: absolute;
+    z-index: 2;
+    width: 133px;
+    font-size: 16px;
+    right: -10px;
+    top: 54px;
+    text-align: left;
+    border-radius: 2px;
+    background-color: #49484b;
+    padding: 0 15px;
+    transform-origin: 90% 0%;
+  }
+
+  .menu-open {
+    transition: initial;
+    opacity: 1;
+  }
+
+  .menu-close {
+    opacity: 0;
+    transition: .2s opacity ease, .6s transform ease;
+    transform: scale(0);
+  }
+
+  .menu li {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
   }
 </style>
