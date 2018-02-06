@@ -12,7 +12,7 @@
         </li>
         <li>
           <span class="iconfont icon-tips-add-friend"></span>
-          <div>添加朋友</div>
+          <div><a href="">添加朋友</a></div>
         </li>
         <li>
           <span class="iconfont icon-tips-saoyisao"></span>
@@ -44,7 +44,7 @@
       showMenu() {
         const that = this
         that.isShowMenu = !that.isShowMenu
-      }
+      },
     }
   }
 </script>
@@ -53,7 +53,6 @@
   .top {
     position: relative;
     z-index: 2;
-    overflow: hidden;
     height: 45px;
     padding: 0 15px 0 10px;
     line-height: 45px;
@@ -87,10 +86,10 @@
   .menu {
     position: absolute;
     z-index: 2;
-    width: 133px;
+    width: 166px;
     font-size: 16px;
     right: -10px;
-    top: 54px;
+    top: 45px;
     text-align: left;
     border-radius: 2px;
     background-color: #49484b;
@@ -113,5 +112,10 @@
     position: relative;
     height: 40px;
     line-height: 40px;
+  }
+  .menu .iconfont{
+    float: left;
+    margin-right: 15px;
+    font-size: 14px;
   }
 </style>
