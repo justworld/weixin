@@ -12,7 +12,7 @@
         </li>
         <li>
           <span class="iconfont icon-tips-add-friend"></span>
-          <div><a href="">添加朋友</a></div>
+          <div><a href="/contact/add">添加朋友</a></div>
         </li>
         <li>
           <span class="iconfont icon-tips-saoyisao"></span>

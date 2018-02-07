@@ -25,3 +25,6 @@ body {
 ol, ul {
 	list-style: none;
 }
+a{
+  color: inherit;
+}

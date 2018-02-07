@@ -7,6 +7,9 @@ import ChatIndex from '@/pages/chat'
 import Login from '@/pages/login.vue'
 import Reg from '@/pages/reg.vue'
 
+import Contact from '@/pages/contact'
+import AddFriend from '@/pages/contact/add.vue'
+
 const routes= [
   {
     path: '/',
@@ -22,6 +25,16 @@ const routes= [
     path: '/reg',
     name: 'reg',
     component: Reg
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: Contact
+  },
+  {
+    path: '/contact/add',
+    name: 'addFriend',
+    component: AddFriend
   }
 ]
 
