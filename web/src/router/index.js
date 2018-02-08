@@ -9,6 +9,7 @@ import Reg from '@/pages/reg.vue'
 
 import Contact from '@/pages/contact'
 import AddFriend from '@/pages/contact/add.vue'
+import ContactInfo from '@/pages/contact/info.vue'
 
 const routes= [
   {
@@ -35,6 +36,11 @@ const routes= [
     path: '/contact/add',
     name: 'addFriend',
     component: AddFriend
+  },
+  {
+    path: '/contact/info',
+    name: 'info',
+    component: ContactInfo
   }
 ]
 
