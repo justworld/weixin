@@ -31,7 +31,7 @@
     methods: {
       addFriend() {
         const that=this;
-        alert('加号成功')
+        alert('加号成')
       },
     }
   }
