@@ -17,5 +17,13 @@ export default {
         password: password
       }
     ).then(res => res.data)
+  },
+  addFriend(userId, friendId) {
+    debugger
+    return axios.post('/addFriend', {
+        userId: userId,
+        friendId: friendId
+      }
+    ).then(res => res.data)
   }
 }

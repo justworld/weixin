@@ -27,18 +27,34 @@
   </div>
 </template>
 <script>
+  import {mapModules, mapRules} from 'vuet'
+
   export default {
+    mixins: [
+      mapModules({
+        user: 'user'
+      }),
+      mapRules({
+        manual: 'user'
+      })
+    ],
     methods: {
-      addFriend() {
-        const that=this;
-        alert('加号成')
+      async addFriend() {
+        const that = this;
+        const data = await that.$user.addFriend(2);
+        debugger
+        if (data.result) {
+          that.$router.push('/')
+        } else {
+          alert('添加好友失败')
+        }
       },
     }
   }
 </script>
 
 <style scoped>
-  .cover{
+  .cover {
     position: relative;
     width: 100%;
     height: 100%;
@@ -50,7 +66,8 @@
     background-color: #efeff4;
     box-shadow: 0px 0 41px rgba(0, 0, 0, 0.1);
   }
-  .cell{
+
+  .cell {
     margin-top: 15px;
     padding: 10px 15px;
     position: relative;
@@ -62,7 +79,8 @@
     align-items: center;
     background-color: #fff;
   }
-  .pic{
+
+  .pic {
     width: 55px;
     height: 55px;
     border-radius: 6px;
@@ -70,11 +88,13 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .remark{
+
+  .remark {
     font-size: 18px;
     color: #4f4f4f;
   }
-  .gender{
+
+  .gender {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -82,32 +102,39 @@
     margin-left: 4px;
     margin-top: -2px;
   }
-  .gender.man{
+
+  .gender.man {
     background-image: url(../../assets/images/contact_male.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
   }
-  .card p{
+
+  .card p {
     font-size: 14px;
     color: #888888;
   }
-  .other{
+
+  .other {
     display: block;
   }
-  .other div{
+
+  .other div {
     width: 100%;
     padding: 10px 0;
     border-bottom: 1px solid #f3f0f0;
   }
-  .other .first{
+
+  .other .first {
     display: inline-block;
     width: 68px;
     margin-right: 20px;
   }
-  .other .second{
+
+  .other .second {
     color: #888888;
   }
+
   .add {
     margin: 20px auto;
     width: 92%;

@@ -10,6 +10,7 @@ export default new Vuet({
     user: {
       data() {
         return {
+          userId: 0,
           username: ''
         }
       },
@@ -20,9 +21,14 @@ export default new Vuet({
         async login({state}, name, password) {
           const data = await API.login(name, password)
           if (data.result) {
-            state = {username: name}
+            this.userId = data.data
+            this.username = name
+            debugger
           }
           return data
+        },
+        addFriend({state}, friendId) {
+          return API.addFriend(state.userId, friendId)
         }
       }
     },

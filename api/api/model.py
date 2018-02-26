@@ -9,3 +9,12 @@ class Account(models.Model):
 
     class Meta:
         db_table = 'Account'
+
+
+class Relations(models.Model):
+    id = models.IntegerField()
+    lAccountId = models.IntegerField()
+    rAccountId = models.IntegerField()
+
+    class Meta:
+        db_table = 'Relations'

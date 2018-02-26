@@ -8,7 +8,8 @@
     <div class="options">
       <a class="cell" href="javascript:;">
         <div><img src="../../assets/images/add-friend-scanqr.png"></div>
-        <div class="title"><p>扫一扫</p><p>扫描二维码名片</p></div>
+        <div class="title"><p>扫一扫</p>
+          <p>扫描二维码名片</p></div>
       </a>
     </div>
   </div>
@@ -18,7 +19,7 @@
   export default {
     methods: {
       goInfo() {
-        const that=this;
+        const that = this;
         that.$router.push('/contact/info')
       },
     }
@@ -26,7 +27,7 @@
 </script>
 
 <style scoped>
-  .cover{
+  .cover {
     position: relative;
     width: 100%;
     height: 100%;
@@ -38,7 +39,8 @@
     background-color: #efeff4;
     box-shadow: 0px 0 41px rgba(0, 0, 0, 0.1);
   }
-  .search{
+
+  .search {
     position: relative;
     height: 50px;
     padding-left: 30px;
@@ -49,10 +51,12 @@
     border-bottom: 1px solid #d9d9d9;
     margin-top: 20px;
   }
-  .icon-search{
+
+  .icon-search {
     color: #40b938;
   }
-  .search input{
+
+  .search input {
     width: calc(100% - 30px);
     font-size: 16px;
     height: 100%;
@@ -61,7 +65,8 @@
     vertical-align: middle;
     border-bottom: 1px solid #40b938;
   }
-  .options{
+
+  .options {
     margin-top: 1.17647059em;
     background-color: #fff;
     line-height: 1.41176471;
@@ -69,7 +74,8 @@
     overflow: hidden;
     position: relative;
   }
-  .options .cell{
+
+  .options .cell {
     padding: 10px 15px;
     position: relative;
     display: -webkit-box;
@@ -79,15 +85,18 @@
     -webkit-align-items: center;
     align-items: center;
   }
-  .options .cell img{
+
+  .options .cell img {
     width: 35px;
     display: block;
     margin-right: 10px;
   }
-  .options .cell p{
+
+  .options .cell p {
     font-size: 15px;
   }
-  .options .cell p:last-child{
+
+  .options .cell p:last-child {
     font-size: 12px;
     color: #b7b7b7;
   }

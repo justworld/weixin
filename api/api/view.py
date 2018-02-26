@@ -4,6 +4,7 @@ from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
 from .model import Account
+from .model import Relations
 from . import tool
 
 
@@ -21,7 +22,7 @@ def login(request):
         try:
             entity = Account.objects.get(name=username)
             if entity.password == tool.Md5Encrypt(password):
-                return JsonResponse({'result': True})
+                return JsonResponse({'result': True, 'data': entity.id})
             else:
                 return JsonResponse({'result': False, 'msg': '密码错误'})
         except Account.DoesNotExist:
@@ -48,5 +49,27 @@ def reg(request):
             entity = Account(name=username, password=tool.Md5Encrypt(password))
             entity.save()
             return JsonResponse({'result': True})
+
+    return JsonResponse({'result': False, 'msg': '未通过数据验证'})
+
+
+# 添加好友
+@require_http_methods(['POST'])
+def addFriend(request):
+    model = json.loads(request.body)
+    if 'friendId' in model:
+        userId = model['userId']
+        friendId = model['friendId']
+        if not userId:
+            return JsonResponse({'result': False, 'msg': '未登录'})
+        if not friendId:
+            return JsonResponse({'result': False, 'msg': '添加好友为空'})
+        try:
+            Account.objects.get(id=friendId)
+            entity = Relations(lAccountId=userId, rAccountId=friendId)
+            entity.save()
+            return JsonResponse({'result': True})
+        except Account.DoesNotExist:
+            return JsonResponse({'result': False, 'msg': '添加好友为空'})
 
     return JsonResponse({'result': False, 'msg': '未通过数据验证'})
