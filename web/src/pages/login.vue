@@ -69,8 +69,9 @@
         //登陆
         that.error = ''
         const data = await that.$user.login(that.account, that.password)
-        debugger
         if (data.result) {
+          that.user.userId = data.data
+          that.user.userName = that.account
           that.$router.push('/')
         } else {
           that.error = data.msg

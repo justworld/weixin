@@ -11,7 +11,7 @@ export default new Vuet({
       data() {
         return {
           userId: 0,
-          username: ''
+          userName: ''
         }
       },
       manuals: {
@@ -19,13 +19,7 @@ export default new Vuet({
           return API.reg(name, password)
         },
         async login({state}, name, password) {
-          const data = await API.login(name, password)
-          if (data.result) {
-            this.userId = data.data
-            this.username = name
-            debugger
-          }
-          return data
+          return await API.login(name, password)
         },
         addFriend({state}, friendId) {
           return API.addFriend(state.userId, friendId)

@@ -1,7 +1,7 @@
 <template>
   <ul class="chat-list">
     <li>
-      <div class="info">
+      <div class="info" @click="goDialog">
         <div class="icobox">
           <i class="count">1</i>
           <div class="ico">
@@ -184,7 +184,14 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    methods: {
+      goDialog() {
+        const that = this;
+        that.$router.push('/chat/dialog')
+      },
+    }
+  }
 </script>
 
 <style scoped>
