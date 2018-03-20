@@ -6,7 +6,7 @@
     <div class="footer">
       <span class="iconfont icon-dialogue-voice"></span>
       <div class="chat">
-        <input class="chat-txt"/>
+        <input class="chat-txt" v-on:keyup.13="sendMsg()" v-model="msg"/>
       </div>
       <span class="iconfont icon-dialogue-smile"></span>
       <span class="iconfont icon-dialogue-jia"></span>
@@ -17,13 +17,47 @@
 <script>
   export default {
     data() {
-      return {}
+      return {
+        msg: ''
+      }
     },
     created() {
       const that = this
       that.$parent.isLogin = false
+      init()
     },
-    methods: {}
+    methods: {
+      sendMsg() {
+        const that = this
+        if (that.msg) {
+          ws.send(that.msg)
+        }
+      }
+    }
+  }
+
+  var ws;
+
+  function init() {
+    // Connect to Web Socket
+    ws = new WebSocket("ws://localhost:8012/");
+
+    ws.onopen = function () {
+      console.log("onopen");
+    };
+
+    ws.onmessage = function (e) {
+      console.log("onmessage: " + e.data);
+    };
+
+    ws.onclose = function () {
+      console.log("onclose");
+    };
+
+    ws.onerror = function (e) {
+      console.log("onerror");
+      console.log(e)
+    };
   }
 </script>
 
@@ -36,19 +70,22 @@
     height: 50px;
     background-color: #ffffff;
   }
-  .iconfont{
+
+  .iconfont {
     width: 40px;
     color: #7d7e83;
     font-size: 30px;
     padding-right: 5px;
   }
-  .chat{
+
+  .chat {
     display: inline-block;
     vertical-align: middle;
     padding: 4px 0px;
     height: 100%;
   }
-  .chat-txt{
+
+  .chat-txt {
     border-radius: 6px;
     overflow: hidden;
     padding: 0 10px;
