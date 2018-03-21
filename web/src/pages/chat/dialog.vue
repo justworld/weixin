@@ -40,7 +40,7 @@
 
   function init() {
     // Connect to Web Socket
-    ws = new WebSocket("ws://localhost:8012/");
+    ws = new WebSocket("ws://localhost:8013/");
 
     ws.onopen = function () {
       console.log("onopen");
