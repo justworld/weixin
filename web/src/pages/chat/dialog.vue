@@ -23,41 +23,15 @@
     },
     created() {
       const that = this
-      that.$parent.isLogin = false
-      init()
     },
     methods: {
       sendMsg() {
         const that = this
         if (that.msg) {
-          ws.send(that.msg)
+          that.$parent.sendData(that.msg)
         }
       }
     }
-  }
-
-  var ws;
-
-  function init() {
-    // Connect to Web Socket
-    ws = new WebSocket("ws://localhost:8013/");
-
-    ws.onopen = function () {
-      console.log("onopen");
-    };
-
-    ws.onmessage = function (e) {
-      console.log("onmessage: " + e.data);
-    };
-
-    ws.onclose = function () {
-      console.log("onclose");
-    };
-
-    ws.onerror = function (e) {
-      console.log("onerror");
-      console.log(e)
-    };
   }
 </script>
 

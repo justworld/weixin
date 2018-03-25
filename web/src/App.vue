@@ -9,21 +9,21 @@
       <router-view></router-view>
     </div>
     <!-- di bu导航 -->
-    <div class="footer" v-show="load && isLogin">
+    <div class="footer" v-show="load && userId">
       <v-footer></v-footer>
     </div>
     <!-- 欢迎页 -->
     <div class="welcome" v-show="welcome" transition="welcome"></div>
-<!--    <div class="mobile-tips" style="dislay:none;" v-show="isnotMobile">
-      <div class="mobile-tips-inner">
-        <div class="mobile-model"><img src="./assets/images/mobile.png" alt=""></div>
-        <p><br>为保证最佳用户体验,<br></p>
-        <p class="_align-left">1.请用chrome移动设备调试模式(F12)下打开</p>
-        <p class="_align-left">2.手机浏览器访问</p>
-        <br>
-        <button class="weui_btn weui_btn_mini weui_btn_primary" v-touch:tap='isnotMobile = false'>关闭</button>
-      </div>
-    </div>-->
+    <!--    <div class="mobile-tips" style="dislay:none;" v-show="isnotMobile">
+          <div class="mobile-tips-inner">
+            <div class="mobile-model"><img src="./assets/images/mobile.png" alt=""></div>
+            <p><br>为保证最佳用户体验,<br></p>
+            <p class="_align-left">1.请用chrome移动设备调试模式(F12)下打开</p>
+            <p class="_align-left">2.手机浏览器访问</p>
+            <br>
+            <button class="weui_btn weui_btn_mini weui_btn_primary" v-touch:tap='isnotMobile = false'>关闭</button>
+          </div>
+        </div>-->
   </div>
 </template>
 
@@ -32,19 +32,61 @@
     data() {
       return {
         load: false,//加载
-        isLogin: true,//是否登录
-        welcome: true,
+        userId: 0,//user id
+        userName: '',//user name
+        welcome: true
       }
     },
     created() {
       const that = this
-      if (that.$route.matched.length === 1) {
-        that.welcome = true;
-      }
-      that.load = true;
       setTimeout(() => {
         that.welcome = false;
       }, 2000)
+      that.load = true;
+      if (!that.userId) {
+        if (that.$route.name != 'login') {
+          that.$router.push('/login')
+        }
+        return false;
+      }
+
+      websocketInit()
+      ws.onmessage = that.recevData
+    },
+    methods: {
+      sendData(msg) {
+        ws.send(JSON.stringify({
+          socket_uid: 2,
+          socket_fid: 2,
+          socket_isGroup: false,
+          socket_msg: msg
+        }))
+      },
+      recevData(e) {
+        console.log("onmessage: " + e.data);
+      }
+    }
+  }
+
+  var ws;
+
+  function websocketInit() {
+    if (!ws) {
+      // Connect to Web Socket
+      ws = new WebSocket("ws://localhost:8012/");
+
+      ws.onopen = function () {
+        console.log("onopen");
+      };
+
+      ws.onclose = function () {
+        console.log("onclose");
+      };
+
+      ws.onerror = function (e) {
+        console.log("onerror");
+        console.log(e)
+      };
     }
   }
 </script>

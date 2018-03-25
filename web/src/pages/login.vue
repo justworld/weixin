@@ -70,8 +70,8 @@
         that.error = ''
         const data = await that.$user.login(that.account, that.password)
         if (data.result) {
-          that.user.userId = data.data
-          that.user.userName = that.account
+          that.$parent.userId = data.data
+          that.$parent.userName = that.account
           that.$router.push('/')
         } else {
           that.error = data.msg

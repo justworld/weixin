@@ -32,9 +32,6 @@
   export default {
     data() {
       return {
-        load: false,//加载
-        isLogin: true,//是否登录
-        welcome: true,
         isShowMenu: false,
       }
     },

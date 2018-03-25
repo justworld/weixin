@@ -144,7 +144,3 @@ CORS_ALLOW_HEADERS = (
     'x-requested-with',
 )
 
-# websocket init
-from . import websocket
-
-websocket.run()
