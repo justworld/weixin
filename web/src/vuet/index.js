@@ -19,6 +19,7 @@ export default new Vuet({
           return API.reg(name, password)
         },
         async login({state}, name, password) {
+          state.userId = 2
           return await API.login(name, password)
         },
         addFriend({state}, friendId) {

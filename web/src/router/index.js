@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
 import ChatIndex from '@/pages/chat'
 import ChatDialog from '@/pages/chat/dialog.vue'
@@ -51,7 +51,15 @@ const routes = [
   }
 ]
 
-export default new VueRouter({
+const router = new Router({
   routes,
   mode: 'history', //路由模式
 })
+
+//路由变换之前
+router.beforeEach(async (to, from, next) => {
+  next()
+})
+
+
+export default router

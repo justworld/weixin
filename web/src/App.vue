@@ -44,7 +44,7 @@
       }, 2000)
       that.load = true;
       if (!that.userId) {
-        if (that.$route.name != 'login') {
+        if (that.$route.name != 'login'&&that.$route.name != 'reg') {
           that.$router.push('/login')
         }
         return false;

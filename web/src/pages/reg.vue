@@ -57,6 +57,7 @@
     methods: {
       clear(name) {
         const that = this
+        console.log(that)
         if (name) {
           that[name] = ''
         }
