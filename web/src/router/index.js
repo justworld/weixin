@@ -17,16 +17,19 @@ const routes = [
   {
     path: '/',
     name: 'index',
+    meta: {nav: true},
     component: ChatIndex,
   },
   {
     path: '/login',
     name: 'login',
+    meta: {auth: false},
     component: Login
   },
   {
     path: '/reg',
     name: 'reg',
+    meta: {auth: false},
     component: Reg
   },
   {
@@ -58,7 +61,19 @@ const router = new Router({
 
 //路由变换之前
 router.beforeEach(async (to, from, next) => {
+  const {auth = true} = to.meta//是否需要登陆
+  if (auth) {
+    const userId = sessionStorage.getItem('weixin')
+    if (userId != null) {
+      next()
+      return
+    } else {
+      next(false)
+      router.replace('/login')
+    }
+  }
   next()
+
 })
 
 

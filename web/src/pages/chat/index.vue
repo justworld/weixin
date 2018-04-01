@@ -188,7 +188,7 @@
     methods: {
       goDialog() {
         const that = this;
-        that.$router.push('/chat/dialog')
+        that.$router.replace('/chat/dialog')
       },
     }
   }

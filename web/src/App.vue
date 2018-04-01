@@ -9,7 +9,7 @@
       <router-view></router-view>
     </div>
     <!-- di bu导航 -->
-    <div class="footer" v-show="load && userId">
+    <div class="footer" v-show="load && showNav">
       <v-footer></v-footer>
     </div>
     <!-- 欢迎页 -->
@@ -32,24 +32,17 @@
     data() {
       return {
         load: false,//加载
-        userId: 0,//user id
-        userName: '',//user name
+        showNav: false,
         welcome: true
       }
     },
     created() {
       const that = this
       setTimeout(() => {
-        that.welcome = false;
+        that.welcome = false
       }, 2000)
-      that.load = true;
-      if (!that.userId) {
-        if (that.$route.name != 'login'&&that.$route.name != 'reg') {
-          that.$router.push('/login')
-        }
-        return false;
-      }
-
+      that.load = true
+      that.showNav = that.$route.meta.nav
       websocketInit()
       ws.onmessage = that.recevData
     },

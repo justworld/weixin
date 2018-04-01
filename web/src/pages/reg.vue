@@ -23,7 +23,7 @@
         </div>
         <div class="login-panel">
           <div style="width: 100%;height: 15px;">
-            <a title="点击登录" href="/login" class="btn-reg">登录</a>
+            <a title="点击登录" @click="goLogin" class="btn-reg">登录</a>
           </div>
         </div>
         <div class="login-panel">
@@ -55,6 +55,9 @@
       }
     },
     methods: {
+      goLogin(){
+        this.$router.replace('/login')
+      },
       clear(name) {
         const that = this
         console.log(that)
@@ -85,7 +88,7 @@
         that.error = ''
         const data = await that.$user.createUser(that.account, that.password)
         if (data.result) {
-          that.$router.push('/login')
+          that.$router.replace('/login')
         } else {
           that.error = data.msg
         }

@@ -18,11 +18,11 @@
         </div>
         <div class="login-panel">
           <div style="width: 100%;height: 15px;">
-            <a title="点击注册" href="javascript:;" @click="goReg" class="btn-reg">注册帐号</a>
+            <a title="点击注册" @click="goReg" class="btn-reg">注册帐号</a>
           </div>
         </div>
         <div class="login-panel">
-          <a title="点击登录" href="javascript:;" class="btn-login" @click="submit">登录</a>
+          <a title="点击登录" class="btn-login" @click="submit">登录</a>
         </div>
       </form>
     </div>
@@ -75,7 +75,7 @@
         if (data.result) {
           that.$parent.userId = data.data
           that.$parent.userName = that.account
-          that.$router.push('/')
+          that.$router.replace('/')
         } else {
           that.error = data.msg
         }
