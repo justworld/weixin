@@ -42,9 +42,8 @@
       async addFriend() {
         const that = this;
         const data = await that.$user.addFriend(2);
-        debugger
         if (data.result) {
-          that.$router.push('/')
+          that.$router.replace('/')
         } else {
           alert('添加好友失败')
         }

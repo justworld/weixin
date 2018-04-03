@@ -12,7 +12,7 @@
         </li>
         <li>
           <span class="iconfont icon-tips-add-friend"></span>
-          <div><a href="/contact/add">添加朋友</a></div>
+          <div><a @click="$router.replace('/contact/add');isShowMenu=false">添加朋友</a></div>
         </li>
         <li>
           <span class="iconfont icon-tips-saoyisao"></span>
@@ -110,7 +110,8 @@
     height: 40px;
     line-height: 40px;
   }
-  .menu .iconfont{
+
+  .menu .iconfont {
     float: left;
     margin-right: 15px;
     font-size: 14px;

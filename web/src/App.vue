@@ -33,7 +33,8 @@
       return {
         load: false,//加载
         showNav: false,
-        welcome: true
+        welcome: true,
+        chatList: []//聊天记录缓存
       }
     },
     created() {
@@ -45,6 +46,8 @@
       that.showNav = that.$route.meta.nav
       websocketInit()
       ws.onmessage = that.recevData
+      //获取历史未读聊天记录
+
     },
     methods: {
       sendData(msg) {

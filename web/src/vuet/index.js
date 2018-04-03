@@ -9,9 +9,6 @@ export default new Vuet({
   modules: {
     user: {
       data() {
-        return {
-          userId: 0
-        }
       },
       manuals: {
         createUser({state}, name, password) {
@@ -20,13 +17,13 @@ export default new Vuet({
         async login({state}, name, password) {
           let data = await API.login(name, password)
           if (data.result) {
-            state.userId = data.data
             sessionStorage.setItem('weixin', data.data)
           }
           return data
         },
         addFriend({state}, friendId) {
-          return API.addFriend(state.userId, friendId)
+          const userId = sessionStorage.getItem('weixin')
+          return API.addFriend(userId, friendId)
         }
       }
     },

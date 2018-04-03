@@ -2,6 +2,7 @@
 
 from websocket_server import WebsocketServer
 import json
+from .model import Chats
 
 '''
 数据协议
@@ -14,17 +15,48 @@ import json
 }
 '''
 
+clientIds = []  # client和userId对应数组
+
+
+def find_to_client(client):
+    for c in clientIds:
+        if c['client'] == client:
+            return c
+
+
+def find_to_user(user):
+    for u in clientIds:
+        if u['user'] == user:
+            return u
+
 
 def new_client(client, server):
-    server.send_message_to_all('hey all,a new client has joined us')
+    pass
 
 
 def client_left(client, server):
-    print 'one client has left'
+    handler = find_to_client(client)
+    if handler in clientIds:
+        clientIds.remove(handler)
 
 
 def message_received(client, server, message):
     data = json.loads(message)
+    handler = {'client': client, 'user': data.socket_uid}
+    if handler not in clientIds:
+        clientIds.append(handler)
+    receiver = find_to_user(data.socket_fid)
+    if receiver is None:#暂存至数据库
+        pass
+    else:
+        receData = {#发送消息包
+            'socket_uid': receiver.user,
+            'socket_fid': data.socket_uid,
+            'socket_gid': '',
+            'socket_isGroup': data.socket_isGroup,
+            'socket_msg': message
+        }
+        server.send_message(client, receData)
     print data
 
 

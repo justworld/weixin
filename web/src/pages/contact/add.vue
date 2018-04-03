@@ -2,7 +2,7 @@
   <div class="cover">
     <div class="search">
       <span class="iconfont icon-search"></span>
-      <input type="text" placeholder="微信号" @click="goInfo">
+      <input type="text" placeholder="微信号" @click="$router.replace('/contact/info')">
     </div>
     <p style="text-align: center;;;;;;;;;;;;;;;;;;;">我的微信号是：xiap</p>
     <div class="options">
@@ -18,10 +18,6 @@
 <script>
   export default {
     methods: {
-      goInfo() {
-        const that = this;
-        that.$router.push('/contact/info')
-      },
     }
   }
 </script>

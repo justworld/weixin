@@ -18,7 +18,7 @@
         </div>
         <div class="login-panel">
           <div style="width: 100%;height: 15px;">
-            <a title="点击注册" @click="goReg" class="btn-reg">注册帐号</a>
+            <a title="点击注册" @click="$router.replace('/reg')" class="btn-reg">注册帐号</a>
           </div>
         </div>
         <div class="login-panel">
@@ -49,9 +49,6 @@
       }
     },
     methods: {
-      goReg(){
-        this.$router.replace('/reg')
-      },
       clear(name) {
         const that = this
         if (name) {

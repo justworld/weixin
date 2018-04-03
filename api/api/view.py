@@ -60,13 +60,18 @@ def addFriend(request):
     if 'friendId' in model:
         userId = model['userId']
         friendId = model['friendId']
+        print userId, friendId
         if not userId:
             return JsonResponse({'result': False, 'msg': '未登录'})
         if not friendId:
             return JsonResponse({'result': False, 'msg': '添加好友为空'})
         try:
             Account.objects.get(id=friendId)
-            entity = Relations(lAccountId=userId, rAccountId=friendId)
+            isExist = (Relations.objects.filter(laccountid=userId, raccountid=friendId).exists()
+                       or Relations.objects.filter(laccountid=userId, raccountid=friendId).exists())
+            if isExist:
+                return JsonResponse({'result': False, 'msg': '你们已经是好友了'})
+            entity = Relations(laccountid=userId, raccountid=friendId)
             entity.save()
             return JsonResponse({'result': True})
         except Account.DoesNotExist:
