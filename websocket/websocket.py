@@ -2,7 +2,7 @@
 
 from websocket_server import WebsocketServer
 import json
-from database import create_session, Chats
+from database import Chats, Relations, insert_chat, create_session
 
 '''
 数据协议
@@ -47,18 +47,33 @@ def message_received(client, server, message):
     print data
     if handler not in clientIds:
         clientIds.append(handler)
-    receiver = find_to_user(data['socket_fid'])
-    if receiver is None:  # 暂存至数据库
-        pass
+
+    if data['socket_isGroup']:
+        #群聊不保存至数据库
+        '''chat = Chats(sendid=data['socket_uid'], recid=data['socket_fid'],
+                     msg=data['socket_msg'], isread=False, isgroup=True)
+        insert_chat(chat)'''
+        sendClients = []
+        accessor = create_session()
+        groupAccounts = accessor.query(Relations).filter(laccountid=data['socket_fid']).all()
+        for a in groupAccounts:
+            client = find_to_user(a.id)
+            if client is not None:
+                sendClients.append(client)
+        accessor.close()
+        if sendClients.count() > 0:
+            for s in sendClients:
+                server.send_message(s, message)
     else:
-        receData = {  # 发送消息包
-            'socket_uid': receiver['user'],
-            'socket_fid': data['socket_uid'],
-            'socket_gid': '',
-            'socket_isGroup': data['socket_isGroup'],
-            'socket_msg': message
-        }
-        server.send_message(client, json.dumps(receData))
+        receiver = find_to_user(data['socket_fid'])
+        # 暂存至数据库
+        if receiver is None:
+            chat = Chats(sendid=data['socket_uid'], recid=data['socket_fid'],
+                         msg=data['socket_msg'], isread=False, isgroup=False)
+            insert_chat(chat)
+        else:
+            # 直接转发
+            server.send_message(client, message)
     print data
 
 
@@ -71,8 +86,4 @@ def run():
 
 
 if __name__ == "__main__":
-    # run()
-    dbAccessor = create_session()
-    list = dbAccessor.query(Chats)
-    for i in list.all():
-        print i.msg
+    run()

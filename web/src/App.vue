@@ -53,7 +53,7 @@
       sendData(msg) {
         ws.send(JSON.stringify({
           socket_uid: 1,
-          socket_fid: 1,
+          socket_fid: 2,
           socket_isGroup: false,
           socket_msg: 'test'
         }))

@@ -35,6 +35,8 @@ class Chats(models.Model):
     sendid = models.IntegerField()
     recid = models.IntegerField()
     msg = models.CharField()
+    isread = models.BooleanField()
+    isgroup = models.BooleanField()
     createdtime = models.DateTimeField()
 
     class Meta:
