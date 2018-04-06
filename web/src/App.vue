@@ -9,7 +9,7 @@
       <router-view></router-view>
     </div>
     <!-- di bu导航 -->
-    <div class="footer" v-show="load && showNav">
+    <div class="footer" @click="sendData()" v-show="load && showNav">
       <v-footer></v-footer>
     </div>
     <!-- 欢迎页 -->
@@ -52,10 +52,10 @@
     methods: {
       sendData(msg) {
         ws.send(JSON.stringify({
-          socket_uid: 2,
-          socket_fid: 2,
+          socket_uid: 1,
+          socket_fid: 1,
           socket_isGroup: false,
-          socket_msg: msg
+          socket_msg: 'test'
         }))
       },
       recevData(e) {

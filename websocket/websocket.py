@@ -2,7 +2,7 @@
 
 from websocket_server import WebsocketServer
 import json
-from .model import Chats
+from database import create_session, Chats
 
 '''
 数据协议
@@ -42,21 +42,23 @@ def client_left(client, server):
 
 def message_received(client, server, message):
     data = json.loads(message)
-    handler = {'client': client, 'user': data.socket_uid}
+    print data
+    handler = {'client': client, 'user': data['socket_uid']}
+    print data
     if handler not in clientIds:
         clientIds.append(handler)
-    receiver = find_to_user(data.socket_fid)
-    if receiver is None:#暂存至数据库
+    receiver = find_to_user(data['socket_fid'])
+    if receiver is None:  # 暂存至数据库
         pass
     else:
-        receData = {#发送消息包
-            'socket_uid': receiver.user,
-            'socket_fid': data.socket_uid,
+        receData = {  # 发送消息包
+            'socket_uid': receiver['user'],
+            'socket_fid': data['socket_uid'],
             'socket_gid': '',
-            'socket_isGroup': data.socket_isGroup,
+            'socket_isGroup': data['socket_isGroup'],
             'socket_msg': message
         }
-        server.send_message(client, receData)
+        server.send_message(client, json.dumps(receData))
     print data
 
 
@@ -69,4 +71,8 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    # run()
+    dbAccessor = create_session()
+    list = dbAccessor.query(Chats)
+    for i in list.all():
+        print i.msg
