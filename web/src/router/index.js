@@ -48,7 +48,7 @@ const routes = [
     component: ContactInfo
   },
   {
-    path: '/chat/dialog',
+    path: '/chat/dialog/:friend',
     name: 'dialog',
     component: ChatDialog
   }

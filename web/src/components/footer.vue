@@ -1,18 +1,18 @@
 <template>
   <div class="nav">
-    <dl :class="{'active':index==1}" @click="goIndex">
+    <dl :class="{'active':$parent.navIndex==1}" @click="goIndex">
       <dt class="iconfont icon-wechat"></dt>
       <dd>微信</dd>
     </dl>
-    <dl :class="{'active':index==2}" @click="goDialog">
+    <dl :class="{'active':$parent.navIndex==2}" @click="goContact">
       <dt class="iconfont icon-contact"></dt>
       <dd>通讯录</dd>
     </dl>
-    <dl :class="{'active':index==3}">
+    <dl :class="{'active':$parent.navIndex==3}">
       <dt class="iconfont icon-find"></dt>
       <dd>发现</dd>
     </dl>
-    <dl :class="{'active':index==4}">
+    <dl :class="{'active':$parent.navIndex==4}">
       <dt class="iconfont icon-me"></dt>
       <dd>我</dd>
     </dl>
@@ -21,21 +21,16 @@
 
 <script>
   export default {
-    data() {
-      return {
-        index: 1
-      }
-    },
     methods: {
       goIndex() {
         const that = this
-        that.index = 1
+        that.$parent.navIndex = 1
         that.$router.replace('/')
       },
-      goDialog() {
+      goContact() {
         const that = this
-        that.index = 2
-        that.$router.replace('/chat/dialog')
+        that.$parent.navIndex = 2
+        that.$router.replace('/contact')
       },
     }
   }

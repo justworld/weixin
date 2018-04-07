@@ -24,7 +24,8 @@
         </li>
       </ul>
     </div>
-    <div class="left">微信</div>
+    <div class="left" v-show="$parent.showNav">微信</div>
+    <div class="left" v-show="!$parent.showNav" @click="goBack">返回</div>
   </div>
 </template>
 
@@ -38,6 +39,10 @@
     created() {
     },
     methods: {
+      goBack(){
+        this.$router.replace('/')
+        this.$parent.navIndex=1
+      },
       showMenu() {
         const that = this
         that.isShowMenu = !that.isShowMenu

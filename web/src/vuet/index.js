@@ -24,6 +24,10 @@ export default new Vuet({
         addFriend({state}, friendId) {
           const userId = sessionStorage.getItem('weixin')
           return API.addFriend(userId, friendId)
+        },
+        getFriends({state}){
+          const userId = sessionStorage.getItem('weixin')
+          return API.getFriends(userId)
         }
       }
     },

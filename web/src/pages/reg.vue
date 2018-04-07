@@ -54,6 +54,9 @@
         error: ''
       }
     },
+    created() {
+      this.$parent.showNav = false
+    },
     methods: {
       clear(name) {
         const that = this

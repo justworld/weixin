@@ -32,7 +32,8 @@
     data() {
       return {
         load: false,//加载
-        showNav: false,
+        navIndex: 1,
+        showNav: true,
         welcome: true,
         chatList: []//聊天记录缓存
       }
@@ -43,19 +44,18 @@
         that.welcome = false
       }, 2000)
       that.load = true
-      that.showNav = that.$route.meta.nav
       websocketInit()
       ws.onmessage = that.recevData
       //获取历史未读聊天记录
 
     },
     methods: {
-      sendData(msg) {
+      sendData(fid, msg, group) {
         ws.send(JSON.stringify({
-          socket_uid: 1,
-          socket_fid: 2,
-          socket_isGroup: false,
-          socket_msg: 'test'
+          socket_uid: sessionStorage.getItem('weixin'),
+          socket_fid: fid,
+          socket_isGroup: group,
+          socket_msg: msg
         }))
       },
       recevData(e) {

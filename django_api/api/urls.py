@@ -19,5 +19,6 @@ from api import view
 urlpatterns = [
     url(r'login',view.login),
     url(r'reg',view.reg),
-    url(r'addFriend',view.addFriend)
+    url(r'addFriend',view.addFriend),
+    url(r'getFriends', view.getFriends)
 ]

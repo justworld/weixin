@@ -19,10 +19,15 @@ export default {
     ).then(res => res.data)
   },
   addFriend(userId, friendId) {
-    debugger
     return axios.post('/addFriend', {
         userId: userId,
         friendId: friendId
+      }
+    ).then(res => res.data)
+  },
+  getFriends(userId){
+    return axios.post('/getFriends', {
+        userId: userId
       }
     ).then(res => res.data)
   }

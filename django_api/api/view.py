@@ -60,7 +60,6 @@ def addFriend(request):
     if 'friendId' in model:
         userId = model['userId']
         friendId = model['friendId']
-        print userId, friendId
         if not userId:
             return JsonResponse({'result': False, 'msg': '未登录'})
         if not friendId:
@@ -77,4 +76,27 @@ def addFriend(request):
         except Account.DoesNotExist:
             return JsonResponse({'result': False, 'msg': '添加好友为空'})
 
+    return JsonResponse({'result': False, 'msg': '未通过数据验证'})
+
+
+# 获取好友列表
+@require_http_methods(['POST'])
+def getFriends(request):
+    model = json.loads(request.body)
+    if 'userId' in model:
+        userId = model['userId']
+        if not userId:
+            return JsonResponse({'result': False, 'msg': '未登录'})
+        lfriends = Relations.objects.filter(laccountid=userId)
+        rfriends = Relations.objects.filter(raccountid=userId)
+        data = []
+        if lfriends.count() > 0:
+            for l in lfriends:
+                account = Account.objects.get(id=l.raccountid)
+                data.append({'user': account.id, 'name': account.name})
+        if rfriends.count() > 0:
+            for r in rfriends:
+                account = Account.objects.get(id=r.laccountid)
+                data.append({'user': account.id, 'name': account.name})
+        return JsonResponse({'result': True, 'data': data})
     return JsonResponse({'result': False, 'msg': '未通过数据验证'})
