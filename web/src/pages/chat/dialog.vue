@@ -15,62 +15,6 @@
           <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
         </div>
       </li>
-      <li>
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li class="right">
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li>
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li class="right">
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li>
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li class="right">
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li>
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li class="right">
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
     </ul>
     <div class="footer">
       <span class="iconfont icon-dialogue-voice"></span>
@@ -92,7 +36,7 @@
     },
     created() {
       const that = this
-      this.$parent.showNav = false
+      that.$parent.showNav = false
       that.friend = that.$route.params.friend
     },
     methods: {
@@ -101,6 +45,9 @@
         if (that.msg) {
           that.$parent.sendData(that.friend, that.msg, false)
         }
+      },
+      receMsg(){
+
       }
     }
   }

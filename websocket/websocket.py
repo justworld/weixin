@@ -73,7 +73,7 @@ def message_received(client, server, message):
             insert_chat(chat)
         else:
             # 直接转发
-            server.send_message(client, message)
+            server.send_message(receiver['client'], message)
     print data
 
 

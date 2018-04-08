@@ -51,6 +51,10 @@
     },
     methods: {
       sendData(fid, msg, group) {
+        const contentVue = this.$children[1]
+        if(contentVue.friend){
+
+        }
         ws.send(JSON.stringify({
           socket_uid: sessionStorage.getItem('weixin'),
           socket_fid: fid,
