@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import vuet from './vuet'
+import util from './utils'
+
+util.regExtension()//注册扩展方法
 
 import components from './components'
 

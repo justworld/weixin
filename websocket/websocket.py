@@ -12,6 +12,7 @@ from database import Chats, Relations, insert_chat, create_session
     socket_gid:群聊id
     socket_isGroup:是否群聊
     socket_msg:数据
+    socket_time:时间
 }
 '''
 
@@ -42,9 +43,7 @@ def client_left(client, server):
 
 def message_received(client, server, message):
     data = json.loads(message)
-    print data
     handler = {'client': client, 'user': data['socket_uid']}
-    print data
     if handler not in clientIds:
         clientIds.append(handler)
 
@@ -74,7 +73,6 @@ def message_received(client, server, message):
         else:
             # 直接转发
             server.send_message(receiver['client'], message)
-    print data
 
 
 def run():

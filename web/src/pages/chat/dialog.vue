@@ -1,18 +1,11 @@
 <template>
   <div style="background-color: #efeff4;height: 100%;overflow: auto">
     <ul class="dialog">
-      <li>
+      <li v-for="item in tempMsgs" :class="{'right':item.send}">
         <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
+          <div class="time">{{item.time}}</div>
           <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
-        </div>
-      </li>
-      <li class="right">
-        <div class="other">
-          <div class="time">2018-04-06 15:21:46</div>
-          <img class="avatar" src="../../assets/images/avatar.jpg">
-          <div class="whatsay">44jlkjlkjlkjlkjkljlkjl4</div>
+          <div class="whatsay">{{item.msg}}</div>
         </div>
       </li>
     </ul>
@@ -31,23 +24,42 @@
     data() {
       return {
         friend: 0,
-        msg: ''
+        msg: '',
+        tempMsgs: []
       }
     },
     created() {
       const that = this
       that.$parent.showNav = false
       that.friend = that.$route.params.friend
+      let t = that.$parent.chatList.find(i => i.id == that.friend)
+      if (t != null) {//读取未读消息
+        that.tempMsgs = t.tempMsgs
+        t.count = 0
+      }
+    },
+    beforeDestroy() {
+      const that = this
+      let t = that.$parent.chatList.find(i => i.id == that.friend)
+      //缓存聊天记录
+      if (t == null) {
+        that.$parent.chatList.push({id: that.friend, tempMsgs: that.tempMsgs, count: 0})
+      } else {
+        t.tempMsgs = that.tempMsgs
+      }
     },
     methods: {
       sendMsg() {
         const that = this
         if (that.msg) {
-          that.$parent.sendData(that.friend, that.msg, false)
+          const time = new Date().format('yyyy-MM-dd hh:mm:ss')
+          that.$parent.sendData(that.friend, that.msg, false, time)
+          that.tempMsgs.push({send: true, time: time, msg: that.msg})
+          that.msg = ''
         }
       },
-      receMsg(){
-
+      receMsg(msg, time) {
+        this.tempMsgs.push({send: false, time: time, msg: msg})
       }
     }
   }
@@ -58,22 +70,26 @@
     height: 100%;
     padding: 0 10px 10px 10px;
   }
-  .dialog li{
+
+  .dialog li {
     margin-bottom: 10px;
   }
-  .dialog .other .avatar{
-    width:40px;
+
+  .dialog .other .avatar {
+    width: 40px;
     height: 40px;
     float: left;
   }
-  .dialog .other .time{
+
+  .dialog .other .time {
     font-size: 12px;
     color: #999;
     text-align: center;
     width: 100%;
     margin-top: 5px;
   }
-  .dialog .whatsay{
+
+  .dialog .whatsay {
     display: inline-block;
     height: 40px;
     max-width: 80%;
@@ -86,15 +102,18 @@
     color: #333;
     word-break: break-all;
   }
-  .dialog .right{
+
+  .dialog .right {
     text-align: right;
   }
-  .dialog .right .other .avatar{
-    width:40px;
+
+  .dialog .right .other .avatar {
+    width: 40px;
     height: 40px;
     float: right;
   }
-  .dialog .right .whatsay{
+
+  .dialog .right .whatsay {
     display: inline-block;
     height: 40px;
     max-width: 80%;
@@ -107,6 +126,7 @@
     color: #333;
     word-break: break-all;
   }
+
   .footer {
     width: 100%;
     position: fixed;

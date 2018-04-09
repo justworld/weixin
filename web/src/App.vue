@@ -47,23 +47,40 @@
       websocketInit()
       ws.onmessage = that.recevData
       //获取历史未读聊天记录
-
     },
     methods: {
-      sendData(fid, msg, group) {
+      sendData(fid, msg, group, time) {
         const contentVue = this.$children[1]
-        if(contentVue.friend){
+        if (contentVue.friend) {
 
         }
         ws.send(JSON.stringify({
           socket_uid: sessionStorage.getItem('weixin'),
           socket_fid: fid,
           socket_isGroup: group,
-          socket_msg: msg
+          socket_msg: msg,
+          socket_time: time
         }))
       },
       recevData(e) {
-        console.log("onmessage: " + e.data);
+        const that = this
+        const data = JSON.parse(e.data)
+        const currFriend = that.$children[1].friend
+        if (data.socket_uid == currFriend) {//当前正和该好友聊天
+          that.$children[1].receMsg(data.socket_msg, data.socket_time)
+        } else {
+          let t = that.chatList.find(i => i.id == data.socket_uid)
+          if (t == null) {
+            let tempMsgs = []
+            tempMsgs.push({send: false, time: data.socket_time, msg: data.socket_msg})
+            that.chatList.push({id: data.socket_uid, tempMsgs: tempMsgs, count: 1})
+          } else {
+            t.tempMsgs.push({send: false, time: data.socket_time, msg: data.socket_msg})
+            t.count += 1
+          }
+        }
+        console.log(that.chatList)
+        //console.log("onmessage: " + e.data);
       }
     }
   }
