@@ -1,7 +1,10 @@
 import axios from 'axios'
 
 //配置
-axios.defaults.baseURL = 'http://localhost:8000'
+//django api
+//axios.defaults.baseURL = 'http://localhost:8000'
+//flask api
+axios.defaults.baseURL = 'http://localhost:5000'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 export default {
@@ -25,7 +28,7 @@ export default {
       }
     ).then(res => res.data)
   },
-  getFriends(userId){
+  getFriends(userId) {
     return axios.post('/getFriends', {
         userId: userId
       }

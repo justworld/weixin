@@ -28,16 +28,3 @@ class Groups(models.Model):
 
     class Meta:
         db_table = 'Groups'
-
-
-class Chats(models.Model):
-    id = models.IntegerField()
-    sendid = models.IntegerField()
-    recid = models.IntegerField()
-    msg = models.CharField()
-    isread = models.BooleanField()
-    isgroup = models.BooleanField()
-    createdtime = models.DateTimeField()
-
-    class Meta:
-        db_table = 'Chats'

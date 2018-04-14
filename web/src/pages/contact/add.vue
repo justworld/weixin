@@ -4,7 +4,7 @@
       <span class="iconfont icon-search"></span>
       <input type="text" placeholder="微信号" @click="$router.replace('/contact/info')">
     </div>
-    <p style="text-align: center;;;;;;;;;;;;;;;;;;;">我的微信号是：xiap</p>
+    <p style="text-align: center;">我的微信号是：xiap</p>
     <div class="options">
       <a class="cell" href="javascript:;">
         <div><img src="../../assets/images/add-friend-scanqr.png"></div>
