@@ -41,11 +41,11 @@
     methods: {
       async addFriend() {
         const that = this;
-        const data = await that.$user.addFriend(2);
+        const data = await that.$user.addFriend(6);
         if (data.result) {
           that.$router.replace('/')
         } else {
-          alert('添加好友失败')
+          alert(data.msg)
         }
       },
     }

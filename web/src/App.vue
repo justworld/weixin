@@ -9,7 +9,7 @@
       <router-view></router-view>
     </div>
     <!-- di bu导航 -->
-    <div class="footer" @click="sendData()" v-show="load && showNav">
+    <div class="footer" v-show="load && showNav">
       <v-footer></v-footer>
     </div>
     <!-- 欢迎页 -->
@@ -50,10 +50,6 @@
     },
     methods: {
       sendData(fid, msg, group, time) {
-        const contentVue = this.$children[1]
-        if (contentVue.friend) {
-
-        }
         ws.send(JSON.stringify({
           socket_uid: sessionStorage.getItem('weixin'),
           socket_fid: fid,

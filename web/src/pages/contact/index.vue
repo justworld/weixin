@@ -14,7 +14,7 @@
       </form>
     </div>
     <div class="contact-head weui_cells weui_cells_access">
-      <a class="weui_cell" href="/contact/add">
+      <a class="weui_cell" @click="$router.replace('/contact/add')">
         <div class="cell-hd"><img src="../../assets/images/contact_top_friend.png"></div>
         <div class="cell-hd weui_cell_primary"><p>新的朋友</p></div>
       </a>

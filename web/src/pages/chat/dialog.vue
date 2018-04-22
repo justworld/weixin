@@ -46,6 +46,7 @@
         that.$parent.chatList.push({id: that.friend, tempMsgs: that.tempMsgs, count: 0})
       } else {
         t.tempMsgs = that.tempMsgs
+        t.count=0
       }
     },
     methods: {
