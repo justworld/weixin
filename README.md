@@ -15,7 +15,7 @@ vue.js前端<br><br><br>
 
    聊天
 
-![](https://github.com/justworld/weixin/blob/master/demo/chat-01.png)
+![](https://github.com/justworld/weixin/blob/master/demo/chat-01.png)<br>
 ![](https://github.com/justworld/weixin/blob/master/demo/chat-02.png)
 
    未读消息
