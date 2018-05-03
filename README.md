@@ -8,10 +8,16 @@ vue.js前端<br><br><br>
 后台分别根据django、flask项目运行
 
 # 演示图
-好友列表<br>
-![](https://github.com/justworld/weixin/blob/master/demo/friend-list.png)<br>
-聊天<br>
-![](https://github.com/justworld/weixin/blob/master/demo/chat-01.png)<br>
-![](https://github.com/justworld/weixin/blob/master/demo/chat-02.png)<br>
-未读消息<br>
+
+   好友列表
+
+![](https://github.com/justworld/weixin/blob/master/demo/friend-list.png)
+
+   聊天
+
+![](https://github.com/justworld/weixin/blob/master/demo/chat-01.png)
+![](https://github.com/justworld/weixin/blob/master/demo/chat-02.png)
+
+   未读消息
+
 ![](https://github.com/justworld/weixin/blob/master/demo/chat-03.png)
