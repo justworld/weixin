@@ -2,6 +2,7 @@
 微信网页版<br>
 聊天通过websocket实现，websocket项目<br>
 后台有tornado、django和flask三个版本，tornado_api、django_api、flask_api<br>
+tornado自带websocket模块<br>
 vue.js前端<br><br><br>
 # 运行
 前台进入web文件夹，运行npm install安装依赖，npm run dev运行<br>
