@@ -2,6 +2,7 @@
 import json
 import tornado.ioloop
 import tornado.web
+import tornado.websocket
 from database import Account, Relations, db_session
 import tool
 
@@ -16,6 +17,7 @@ class Base(tornado.web.RequestHandler):
         # no body
         self.set_status(204)
         self.finish()
+
 
 # 登陆
 class Login(Base):
@@ -109,12 +111,25 @@ class Friends(Base):
             self.finish({'result': False, 'msg': '未通过数据验证'})
 
 
+# websocket
+class WebsocketHandler(tornado.websocket.WebSocketHandler):
+    def check_origin(self, origin):
+        return True
+    def open(self):
+        print 'enter'
+    def on_message(self, message):
+        print message
+    def on_close(self):
+        print 'close'
+
+
 def make_app():
     return tornado.web.Application([
         (r'/login', Login),
         (r'/reg', Reg),
         (r'/addFriend', FriendAdd),
-        (r'/getFriends', Friends)
+        (r'/getFriends', Friends),
+        (r'/ws', WebsocketHandler)
     ])
 
 
